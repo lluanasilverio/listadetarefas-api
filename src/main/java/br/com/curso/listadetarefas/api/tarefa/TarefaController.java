@@ -1,15 +1,18 @@
 package br.com.curso.listadetarefas.api.tarefa;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
 @RequestMapping("/api/tarefas")
 @CrossOrigin(origins = "*")
+@RestController
 public class TarefaController {
-    @Autowired
-    private TarefaService tarefaService;
+
+    private final TarefaService tarefaService;
+
+    public TarefaController(TarefaService tarefaService) {
+        this.tarefaService = tarefaService;
+    }
 
     @GetMapping
     public List<Tarefa> listarTarefas() { return tarefaService.listarTodas(); }

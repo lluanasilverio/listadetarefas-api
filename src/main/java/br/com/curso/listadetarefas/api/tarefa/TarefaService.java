@@ -1,12 +1,15 @@
 package br.com.curso.listadetarefas.api.tarefa;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class TarefaService {
-    @Autowired
-    private TarefaRepository tarefaRepository;
+
+    private final TarefaRepository tarefaRepository;
+
+    public TarefaService(TarefaRepository tarefaRepository) {
+        this.tarefaRepository = tarefaRepository;
+    }
 
     public List<Tarefa> listarTodas() { return tarefaRepository.findAll(); }
     public Tarefa criar(Tarefa tarefa) { return tarefaRepository.save(tarefa); }
